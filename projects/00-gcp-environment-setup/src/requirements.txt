@@ -1,0 +1,58 @@
+# GCP Python Client Libraries for Data Engineering
+
+# Core GCP libraries
+google-cloud-core==2.4.1           # Common functionality for all google-cloud-* packages
+google-auth==2.27.0                # Google authentication
+google-auth-oauthlib==1.2.0        # OAuth 2.0 helpers for authentication
+google-auth-httplib2==0.2.0        # HTTP library for google-auth
+
+# Storage & Data Warehouse
+google-cloud-storage==2.14.0       # Cloud Storage
+google-cloud-bigquery==3.17.1      # BigQuery
+google-cloud-bigquery-storage==2.24.0  # BigQuery Storage API (fast reads)
+google-cloud-bigtable==2.22.0      # Bigtable
+google-cloud-spanner==3.40.1       # Cloud Spanner
+
+# Data Processing
+apache-beam[gcp]==2.53.0           # Apache Beam with GCP connectors (includes Dataflow support)
+google-cloud-dataproc==5.9.1       # Dataproc
+
+# Streaming & Messaging
+google-cloud-pubsub==2.19.2        # Pub/Sub
+
+# Databases
+google-cloud-sql-connector==1.8.0  # Cloud SQL connector
+pymysql==1.1.0                     # MySQL driver (for Cloud SQL MySQL)
+pg8000==1.30.5                     # PostgreSQL driver (for Cloud SQL PostgreSQL)
+
+# Data Governance & Security
+google-cloud-datacatalog==3.19.0   # Data Catalog
+google-cloud-dlp==3.15.1           # Data Loss Prevention (DLP)
+google-cloud-kms==2.19.2           # Key Management Service (KMS)
+
+# Monitoring & Logging
+google-cloud-logging==3.9.0        # Cloud Logging
+google-cloud-monitoring==2.19.0    # Cloud Monitoring
+
+# Utilities
+google-cloud-resource-manager==1.12.0  # Resource Manager API
+google-cloud-iam==2.14.1           # IAM API
+google-cloud-billing==1.12.0       # Billing API
+
+# Data manipulation and analysis
+pandas==2.2.0                      # Data manipulation
+numpy==1.26.4                      # Numerical computing
+pyarrow==15.0.0                    # Arrow format (efficient data interchange)
+
+# HTTP and utilities
+requests==2.31.0                   # HTTP library
+python-dotenv==1.0.1               # Load environment variables from .env files
+
+# Testing (optional, for development)
+pytest==8.0.0                      # Testing framework
+pytest-cov==4.1.0                  # Code coverage
+
+# Code quality (optional, for development)
+black==24.1.1                      # Code formatter
+flake8==7.0.0                      # Linter
+mypy==1.8.0                        # Type checker

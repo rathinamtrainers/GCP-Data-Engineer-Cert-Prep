@@ -1,0 +1,16 @@
+# Requirements for weather data ingestion script
+
+# GCP libraries
+google-cloud-storage==3.4.1
+
+# HTTP requests
+requests==2.32.5
+
+# Configuration
+python-dotenv==1.1.1
+
+# Date/time handling
+python-dateutil==2.9.0
+
+# Logging
+colorlog==6.9.0

@@ -1,0 +1,10 @@
+# Requirements for Apache Beam Dataflow pipeline
+
+# Apache Beam with GCP support
+apache-beam[gcp]==2.53.0
+
+# Configuration
+python-dotenv==1.1.1
+
+# Date/time handling
+python-dateutil==2.9.0

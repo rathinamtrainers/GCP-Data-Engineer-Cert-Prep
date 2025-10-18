@@ -1,0 +1,427 @@
+[
+  {
+    "coord": {
+      "lon": -0.1257,
+      "lat": 51.5085
+    },
+    "weather": [
+      {
+        "id": 804,
+        "main": "Clouds",
+        "description": "overcast clouds",
+        "icon": "04n"
+      }
+    ],
+    "base": "stations",
+    "main": {
+      "temp": 285.88,
+      "feels_like": 285.04,
+      "temp_min": 284.77,
+      "temp_max": 287.11,
+      "pressure": 1019,
+      "humidity": 70,
+      "sea_level": 1019,
+      "grnd_level": 1016
+    },
+    "visibility": 10000,
+    "wind": {
+      "speed": 4.63,
+      "deg": 110
+    },
+    "clouds": {
+      "all": 100
+    },
+    "dt": 1760811629,
+    "sys": {
+      "type": 2,
+      "id": 2075535,
+      "country": "GB",
+      "sunrise": 1760768969,
+      "sunset": 1760806888
+    },
+    "timezone": 3600,
+    "id": 2643743,
+    "name": "London",
+    "cod": 200,
+    "fetch_timestamp": "2025-10-18T18:23:49.369232+00:00",
+    "api_source": "OpenWeather"
+  },
+  {
+    "coord": {
+      "lon": 2.3488,
+      "lat": 48.8534
+    },
+    "weather": [
+      {
+        "id": 800,
+        "main": "Clear",
+        "description": "clear sky",
+        "icon": "01n"
+      }
+    ],
+    "base": "stations",
+    "main": {
+      "temp": 286.21,
+      "feels_like": 285.29,
+      "temp_min": 284.92,
+      "temp_max": 287.03,
+      "pressure": 1020,
+      "humidity": 66,
+      "sea_level": 1020,
+      "grnd_level": 1010
+    },
+    "visibility": 10000,
+    "wind": {
+      "speed": 3.6,
+      "deg": 100
+    },
+    "clouds": {
+      "all": 0
+    },
+    "dt": 1760811543,
+    "sys": {
+      "type": 2,
+      "id": 2012208,
+      "country": "FR",
+      "sunrise": 1760768122,
+      "sunset": 1760806547
+    },
+    "timezone": 7200,
+    "id": 2988507,
+    "name": "Paris",
+    "cod": 200,
+    "fetch_timestamp": "2025-10-18T18:23:50.392463+00:00",
+    "api_source": "OpenWeather"
+  },
+  {
+    "coord": {
+      "lon": 139.6917,
+      "lat": 35.6895
+    },
+    "weather": [
+      {
+        "id": 803,
+        "main": "Clouds",
+        "description": "broken clouds",
+        "icon": "04n"
+      }
+    ],
+    "base": "stations",
+    "main": {
+      "temp": 293.78,
+      "feels_like": 293.86,
+      "temp_min": 292.47,
+      "temp_max": 294.94,
+      "pressure": 1016,
+      "humidity": 75,
+      "sea_level": 1016,
+      "grnd_level": 1014
+    },
+    "visibility": 10000,
+    "wind": {
+      "speed": 1.54,
+      "deg": 20
+    },
+    "clouds": {
+      "all": 75
+    },
+    "dt": 1760811563,
+    "sys": {
+      "type": 2,
+      "id": 268395,
+      "country": "JP",
+      "sunrise": 1760820643,
+      "sunset": 1760860888
+    },
+    "timezone": 32400,
+    "id": 1850144,
+    "name": "Tokyo",
+    "cod": 200,
+    "fetch_timestamp": "2025-10-18T18:23:55.602892+00:00",
+    "api_source": "OpenWeather"
+  },
+  {
+    "coord": {
+      "lon": 151.2073,
+      "lat": -33.8679
+    },
+    "weather": [
+      {
+        "id": 801,
+        "main": "Clouds",
+        "description": "few clouds",
+        "icon": "02n"
+      }
+    ],
+    "base": "stations",
+    "main": {
+      "temp": 288.79,
+      "feels_like": 288.6,
+      "temp_min": 286.66,
+      "temp_max": 289.65,
+      "pressure": 1017,
+      "humidity": 84,
+      "sea_level": 1017,
+      "grnd_level": 1013
+    },
+    "visibility": 10000,
+    "wind": {
+      "speed": 2.17,
+      "deg": 347,
+      "gust": 3.06
+    },
+    "clouds": {
+      "all": 21
+    },
+    "dt": 1760811826,
+    "sys": {
+      "type": 2,
+      "id": 2091046,
+      "country": "AU",
+      "sunrise": 1760814544,
+      "sunset": 1760861460
+    },
+    "timezone": 39600,
+    "id": 2147714,
+    "name": "Sydney",
+    "cod": 200,
+    "fetch_timestamp": "2025-10-18T18:23:56.627019+00:00",
+    "api_source": "OpenWeather"
+  },
+  {
+    "coord": {
+      "lon": 72.8479,
+      "lat": 19.0144
+    },
+    "weather": [
+      {
+        "id": 711,
+        "main": "Smoke",
+        "description": "smoke",
+        "icon": "50n"
+      }
+    ],
+    "base": "stations",
+    "main": {
+      "temp": 303.14,
+      "feels_like": 307.23,
+      "temp_min": 303.14,
+      "temp_max": 303.14,
+      "pressure": 1008,
+      "humidity": 66,
+      "sea_level": 1008,
+      "grnd_level": 1008
+    },
+    "visibility": 3000,
+    "wind": {
+      "speed": 2.06,
+      "deg": 60
+    },
+    "clouds": {
+      "all": 20
+    },
+    "dt": 1760811838,
+    "sys": {
+      "type": 1,
+      "id": 9052,
+      "country": "IN",
+      "sunrise": 1760749405,
+      "sunset": 1760791429
+    },
+    "timezone": 19800,
+    "id": 1275339,
+    "name": "Mumbai",
+    "cod": 200,
+    "fetch_timestamp": "2025-10-18T18:23:57.654867+00:00",
+    "api_source": "OpenWeather"
+  },
+  {
+    "coord": {
+      "lon": 103.8501,
+      "lat": 1.2897
+    },
+    "weather": [
+      {
+        "id": 803,
+        "main": "Clouds",
+        "description": "broken clouds",
+        "icon": "04n"
+      }
+    ],
+    "base": "stations",
+    "main": {
+      "temp": 299.96,
+      "feels_like": 302.47,
+      "temp_min": 299.07,
+      "temp_max": 300.12,
+      "pressure": 1006,
+      "humidity": 80,
+      "sea_level": 1006,
+      "grnd_level": 1005
+    },
+    "visibility": 10000,
+    "wind": {
+      "speed": 2.06,
+      "deg": 30
+    },
+    "clouds": {
+      "all": 75
+    },
+    "dt": 1760811839,
+    "sys": {
+      "type": 1,
+      "id": 9470,
+      "country": "SG",
+      "sunrise": 1760827618,
+      "sunset": 1760871114
+    },
+    "timezone": 28800,
+    "id": 1880252,
+    "name": "Singapore",
+    "cod": 200,
+    "fetch_timestamp": "2025-10-18T18:23:58.679787+00:00",
+    "api_source": "OpenWeather"
+  },
+  {
+    "coord": {
+      "lon": 55.3047,
+      "lat": 25.2582
+    },
+    "weather": [
+      {
+        "id": 800,
+        "main": "Clear",
+        "description": "clear sky",
+        "icon": "01n"
+      }
+    ],
+    "base": "stations",
+    "main": {
+      "temp": 304.11,
+      "feels_like": 310.64,
+      "temp_min": 302.29,
+      "temp_max": 304.11,
+      "pressure": 1010,
+      "humidity": 70,
+      "sea_level": 1010,
+      "grnd_level": 1010
+    },
+    "visibility": 10000,
+    "wind": {
+      "speed": 3.6,
+      "deg": 0
+    },
+    "clouds": {
+      "all": 0
+    },
+    "dt": 1760811558,
+    "sys": {
+      "type": 1,
+      "id": 7537,
+      "country": "AE",
+      "sunrise": 1760753904,
+      "sunset": 1760795350
+    },
+    "timezone": 14400,
+    "id": 292223,
+    "name": "Dubai",
+    "cod": 200,
+    "fetch_timestamp": "2025-10-18T18:23:59.703133+00:00",
+    "api_source": "OpenWeather"
+  },
+  {
+    "coord": {
+      "lon": 13.4105,
+      "lat": 52.5244
+    },
+    "weather": [
+      {
+        "id": 800,
+        "main": "Clear",
+        "description": "clear sky",
+        "icon": "01n"
+      }
+    ],
+    "base": "stations",
+    "main": {
+      "temp": 279.64,
+      "feels_like": 278.75,
+      "temp_min": 277.6,
+      "temp_max": 280.97,
+      "pressure": 1028,
+      "humidity": 73,
+      "sea_level": 1028,
+      "grnd_level": 1022
+    },
+    "visibility": 10000,
+    "wind": {
+      "speed": 1.54,
+      "deg": 350
+    },
+    "clouds": {
+      "all": 0
+    },
+    "dt": 1760811661,
+    "sys": {
+      "type": 2,
+      "id": 2011538,
+      "country": "DE",
+      "sunrise": 1760765820,
+      "sunset": 1760803540
+    },
+    "timezone": 7200,
+    "id": 2950159,
+    "name": "Berlin",
+    "cod": 200,
+    "fetch_timestamp": "2025-10-18T18:24:00.728036+00:00",
+    "api_source": "OpenWeather"
+  },
+  {
+    "coord": {
+      "lon": -79.4163,
+      "lat": 43.7001
+    },
+    "weather": [
+      {
+        "id": 800,
+        "main": "Clear",
+        "description": "clear sky",
+        "icon": "01d"
+      }
+    ],
+    "base": "stations",
+    "main": {
+      "temp": 293.02,
+      "feels_like": 292.6,
+      "temp_min": 292.14,
+      "temp_max": 295.6,
+      "pressure": 1009,
+      "humidity": 59,
+      "sea_level": 1009,
+      "grnd_level": 993
+    },
+    "visibility": 10000,
+    "wind": {
+      "speed": 6.26,
+      "deg": 210,
+      "gust": 0
+    },
+    "clouds": {
+      "all": 0
+    },
+    "dt": 1760811842,
+    "sys": {
+      "type": 2,
+      "id": 2099289,
+      "country": "CA",
+      "sunrise": 1760787343,
+      "sunset": 1760826569
+    },
+    "timezone": -14400,
+    "id": 6167865,
+    "name": "Toronto",
+    "cod": 200,
+    "fetch_timestamp": "2025-10-18T18:24:01.754869+00:00",
+    "api_source": "OpenWeather"
+  }
+]

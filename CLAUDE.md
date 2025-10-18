@@ -4,137 +4,189 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Repository Purpose
 
-This is a Google Cloud Platform (GCP) Data Engineer certification preparation repository. It contains a structured study roadmap with tutorial topics that are **generated on-demand** as the user progresses through their learning.
+This is a Google Cloud Platform (GCP) Data Engineer certification preparation repository with **two learning approaches**:
 
-**See [EXAM_PREP.md](EXAM_PREP.md) for the complete study roadmap and all tutorial topics.**
+1. **Project-Based Learning (Recommended)**: [PROJECTS.md](PROJECTS.md) - 7 real-world projects with gcloud CLI commands
+2. **Topic-Based Learning (Alternative)**: [EXAM_PREP.md](EXAM_PREP.md) - Traditional tutorial roadmap with on-demand generation
 
-### On-Demand Tutorial Generation
+**The project-based approach is the primary learning path** - tutorials are supplementary.
 
-Tutorials are NOT pre-created. When the user requests a tutorial on a specific topic:
-1. Check EXAM_PREP.md to identify the appropriate tutorial number and topic
-2. Generate a complete, self-contained tutorial in the appropriate `tutorials/00XX-topic/` directory
-3. Follow the Tutorial Requirements (below) for structure and content
+## Key Architecture Principles
 
-## Exam Coverage
+### Dual Learning Paths
 
-The Professional Data Engineer exam has 5 sections:
-1. **Designing data processing systems** (~22%) - Security, reliability, flexibility, migrations
-2. **Ingesting and processing data** (~25%) - Pipelines, batch/streaming, orchestration
-3. **Storing the data** (~20%) - Storage systems, data warehouses, data lakes, platforms
-4. **Preparing and using data for analysis** (~15%) - Visualization, AI/ML, data sharing
-5. **Maintaining and automating workloads** (~18%) - Optimization, monitoring, reliability
+**Projects (Primary)**: Located in `projects/`
+- Sequential, portfolio-building projects (00 through 07)
+- Each project has: README.md, setup.sh, cleanup.sh, commands.md, src/, config/, docs/
+- Projects build on each other - MUST be completed in order
+- Every operation uses gcloud CLI commands
+- Projects are pre-created with complete documentation
 
-## Repository Structure
+**Tutorials (Supplementary)**: Located in `tutorials/`
+- Generated **on-demand** only when user explicitly requests a specific tutorial
+- Numbered by exam section (0010-0099, 0100-0599)
+- Self-contained examples of specific GCP services
+- NOT required if following project path
 
-```
-GCP-Data-Engineer-Cert-Prep/
-├── 010-docs/                    # Exam guides and documentation
-│   └── professional_data_engineer_exam_guide_english.pdf
-├── EXAM_PREP.md                 # Complete study roadmap
-├── tutorials/                   # Hands-on GCP service tutorials
-│   ├── 0010-pubsub-python/      # Section 2: Pub/Sub messaging
-│   ├── 0100-0190/               # Section 1: Design (security, reliability, migrations)
-│   ├── 0200-0270/               # Section 2: Pipelines (Dataflow, Composer, etc.)
-│   ├── 0300-0380/               # Section 3: Storage (BigQuery, Bigtable, etc.)
-│   ├── 0400-0450/               # Section 4: Analysis (BI, ML, sharing)
-│   └── 0500-0550/               # Section 5: Operations (monitoring, optimization)
-└── README.md
-```
+### Content Generation Rules
 
-## Architecture
+**DO NOT** proactively generate tutorials unless:
+1. User explicitly requests a specific tutorial by number or topic
+2. User is following the topic-based (EXAM_PREP.md) approach
 
-### Tutorial Organization
+**DO** guide users through existing project content when they:
+1. Are following the project-based (PROJECTS.md) approach
+2. Ask general questions about GCP services
+3. Need help with specific project tasks
 
-Tutorials are organized by exam section using a numbered directory scheme:
+## Tutorial Numbering System (When Generating)
 
-**Section 1: Designing (0100-0199)**
-- `0100-0129`: Security and compliance (IAM, encryption, DLP)
-- `0130-0159`: Reliability and fidelity (Dataflow, Dataform, monitoring)
-- `0160-0179`: Flexibility and portability (Dataplex, data catalog)
-- `0180-0199`: Data migrations (transfer services, Datastream)
+Tutorials use a strict numbering scheme aligned with exam sections:
 
-**Section 2: Ingesting/Processing (0200-0299, plus 0010-0099 for foundational)**
-- `0010-0099`: Foundational messaging (Pub/Sub)
-- `0200-0209`: Pipeline planning
-- `0210-0259`: Pipeline building (Dataflow, Dataproc, Beam, Spark)
-- `0260-0279`: Pipeline deployment (Composer, Workflows, CI/CD)
+- `0010-0099`: Foundational (Pub/Sub, data engineering basics)
+- `0100-0199`: Section 1 - Designing systems (IAM, encryption, migrations)
+- `0200-0299`: Section 2 - Ingestion/processing (Dataflow, Composer, Beam)
+- `0300-0399`: Section 3 - Storage (BigQuery, Bigtable, Spanner)
+- `0400-0499`: Section 4 - Analysis (BI, ML, Analytics Hub)
+- `0500-0599`: Section 5 - Operations (monitoring, optimization, DR)
 
-**Section 3: Storing (0300-0399)**
-- `0300-0349`: Storage systems (BigQuery, Bigtable, Spanner, Cloud SQL, etc.)
-- `0350-0369`: Data warehouse design and optimization
-- `0370-0389`: Data lakes and platforms (Dataplex)
-
-**Section 4: Analysis (0400-0499)**
-- `0400-0429`: Data visualization and BI
-- `0430-0449`: AI/ML preparation (BigQueryML, Vertex AI)
-- `0450-0469`: Data sharing (Analytics Hub)
-
-**Section 5: Operations (0500-0599)**
-- `0500-0519`: Resource optimization and cost management
-- `0520-0539`: Automation and workload organization
-- `0540-0559`: Monitoring, troubleshooting, disaster recovery
-
-### Tutorial Requirements
-
-Each tutorial should include:
-1. **README.md**: Objective, prerequisites, GCP services used, setup instructions
-2. **Code examples**: Fully functional with comments
-3. **requirements.txt**: Python dependencies (if applicable)
-4. **setup.sh**: GCP resource setup commands (commented, not executable for safety)
-5. **cleanup.sh**: Resource cleanup commands (to avoid costs)
+See EXAM_PREP.md:27-207 for detailed breakdown.
 
 ## Development Environment
 
-This repository uses Python with a virtual environment setup:
-- Virtual environment directory: `venv/` (gitignored)
-- IDE configuration: `.idea/` (PyCharm/IntelliJ, gitignored)
-
-### Setting Up Environment
+### Python Environment Setup
 
 ```bash
-# Create virtual environment
+# Create and activate virtual environment
 python -m venv venv
+source venv/bin/activate  # Linux/Mac
+# venv\Scripts\activate    # Windows
 
-# Activate virtual environment
-# On Windows:
-venv\Scripts\activate
-# On Linux/Mac:
-source venv/bin/activate
-
-# Install dependencies (when requirements.txt exists)
-pip install -r requirements.txt
+# Install dependencies from project or tutorial
+pip install -r src/requirements.txt  # or requirements.txt
 ```
 
-## Creating Tutorials On-Demand
+### GCP Authentication
 
-When the user requests a tutorial:
+All code expects one of these authentication methods:
+1. **User authentication**: `gcloud auth application-default login`
+2. **Service account key**: Set `GOOGLE_APPLICATION_CREDENTIALS` env var
+3. **Project ID**: Set `GOOGLE_CLOUD_PROJECT` env var
 
-1. **Directory naming**: Use the pattern `tutorials/00XX-servicename/` (e.g., `0300-bigquery-basics/`)
-   - Use the numbering from EXAM_PREP.md to maintain organization
-
-2. **Make it self-contained**: Each tutorial should include all necessary files and dependencies
-
-3. **Focus on learning**: Create practical, runnable examples that teach GCP service concepts
-
-4. **Security best practices**:
-   - Never hardcode credentials or project IDs
-   - Use environment variables for configuration
-   - Add notes about IAM permissions required
-
-5. **Cost awareness**: Include cleanup instructions to avoid unnecessary GCP charges
-
-## Testing GCP Code
-
-GCP Python code typically requires:
-- GCP project ID set via environment variable or configuration
-- Service account credentials (JSON key file) or Application Default Credentials
-- Appropriate IAM permissions for the service being used
-
-Example for Pub/Sub:
+Example:
 ```bash
-# Set project ID
 export GOOGLE_CLOUD_PROJECT=your-project-id
-
-# Run the publisher
-python tutorials/0010-pubsub-python/publisher.py
+export GOOGLE_APPLICATION_CREDENTIALS=/path/to/key.json
 ```
+
+## Creating Content (When Requested)
+
+### Tutorial Structure (On-Demand Only)
+
+When user explicitly requests a tutorial, create in `tutorials/00XX-servicename/`:
+
+**Required Files:**
+1. **README.md**:
+   - Learning objective and prerequisites
+   - GCP services covered and IAM permissions needed
+   - Clear setup and testing instructions
+   - Links to official GCP documentation
+
+2. **Code files** (e.g., `publisher.py`, `subscriber.py`):
+   - Fully functional, well-commented code
+   - No hardcoded credentials or project IDs
+   - Use environment variables for configuration
+
+3. **requirements.txt**: Python dependencies with pinned versions
+
+4. **setup.sh**:
+   - Commented gcloud commands (NOT executable by default for safety)
+   - Enable required APIs
+   - Create GCP resources
+
+5. **cleanup.sh**:
+   - Commands to delete all created resources
+   - Prevent ongoing GCP costs
+
+### Project Guidance (Primary Role)
+
+When users are working through projects:
+1. Read the existing README.md, setup.sh, and related files
+2. Help them understand and execute commands
+3. Explain gcloud CLI options and GCP service concepts
+4. Troubleshoot errors with specific suggestions
+5. Do NOT create new files unless fixing bugs or user explicitly requests additions
+
+## GCP Command Patterns
+
+This repository emphasizes gcloud CLI mastery. Common patterns:
+
+### Resource Creation
+```bash
+# BigQuery
+bq mk --dataset --location=US --description="desc" project_id:dataset_name
+bq mk --table dataset.table schema.json
+
+# Pub/Sub
+gcloud pubsub topics create TOPIC_NAME
+gcloud pubsub subscriptions create SUB_NAME --topic=TOPIC_NAME
+
+# Dataflow
+gcloud dataflow jobs run JOB_NAME \
+  --gcs-location=gs://dataflow-templates/latest/template \
+  --region=us-central1 \
+  --parameters=input=gs://bucket/input
+```
+
+### Resource Cleanup
+```bash
+# Always clean up in reverse order of creation
+bq rm -f -t dataset.table      # Delete table first
+bq rm -f -d dataset             # Then dataset
+gcloud pubsub subscriptions delete SUB_NAME
+gcloud pubsub topics delete TOPIC_NAME
+```
+
+## Cost Management Awareness
+
+**Critical**: All tutorials and projects must include:
+- Cost estimates in README.md
+- cleanup.sh with complete resource deletion
+- Warnings about resources that incur ongoing costs
+- Free tier limitations and recommendations
+
+Common cost traps to warn about:
+- Pub/Sub subscriptions (retain messages = cost)
+- BigQuery storage (even free tier queries cost for storage)
+- Dataflow jobs (if left running)
+- Cloud Composer environments (expensive, ~$300/month)
+
+## Security Best Practices
+
+All code must follow these rules:
+
+1. **No hardcoded credentials**: Use environment variables or ADC
+2. **No project IDs in code**: Use `os.environ.get('GOOGLE_CLOUD_PROJECT')`
+3. **Service account keys**: Warn about security implications, suggest ADC instead
+4. **IAM permissions**: Document minimum required roles in README.md
+5. **gitignore**: Ensure `.env`, `*.json` (keys), `venv/` are gitignored
+
+## Testing Generated Code
+
+Before delivering tutorials with Python code, verify:
+1. All imports are in requirements.txt
+2. Code runs without hardcoded values
+3. Error handling for missing environment variables
+4. setup.sh enables all required APIs
+5. cleanup.sh removes all billable resources
+
+## Exam Context (When Relevant)
+
+The Professional Data Engineer exam has 5 sections (see EXAM_PREP.md for details):
+1. Designing data processing systems (~22%)
+2. Ingesting and processing data (~25%)
+3. Storing the data (~20%)
+4. Preparing and using data for analysis (~15%)
+5. Maintaining and automating workloads (~18%)
+
+When explaining concepts, relate them to exam objectives when helpful.

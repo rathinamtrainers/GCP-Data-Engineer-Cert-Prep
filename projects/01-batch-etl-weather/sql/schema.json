@@ -1,0 +1,140 @@
+[
+  {
+    "name": "date",
+    "type": "DATE",
+    "mode": "REQUIRED",
+    "description": "Date of the weather observation (partition key)"
+  },
+  {
+    "name": "timestamp",
+    "type": "TIMESTAMP",
+    "mode": "REQUIRED",
+    "description": "Exact time of the observation (UTC)"
+  },
+  {
+    "name": "city",
+    "type": "STRING",
+    "mode": "REQUIRED",
+    "description": "City name (clustering key)"
+  },
+  {
+    "name": "country",
+    "type": "STRING",
+    "mode": "REQUIRED",
+    "description": "Country code (ISO 3166, clustering key)"
+  },
+  {
+    "name": "latitude",
+    "type": "FLOAT64",
+    "mode": "REQUIRED",
+    "description": "City latitude"
+  },
+  {
+    "name": "longitude",
+    "type": "FLOAT64",
+    "mode": "REQUIRED",
+    "description": "City longitude"
+  },
+  {
+    "name": "temperature_c",
+    "type": "FLOAT64",
+    "mode": "NULLABLE",
+    "description": "Temperature in Celsius"
+  },
+  {
+    "name": "temperature_f",
+    "type": "FLOAT64",
+    "mode": "NULLABLE",
+    "description": "Temperature in Fahrenheit (derived)"
+  },
+  {
+    "name": "feels_like_c",
+    "type": "FLOAT64",
+    "mode": "NULLABLE",
+    "description": "Feels like temperature in Celsius"
+  },
+  {
+    "name": "temp_min_c",
+    "type": "FLOAT64",
+    "mode": "NULLABLE",
+    "description": "Minimum temperature in Celsius"
+  },
+  {
+    "name": "temp_max_c",
+    "type": "FLOAT64",
+    "mode": "NULLABLE",
+    "description": "Maximum temperature in Celsius"
+  },
+  {
+    "name": "pressure_hpa",
+    "type": "INT64",
+    "mode": "NULLABLE",
+    "description": "Atmospheric pressure in hPa"
+  },
+  {
+    "name": "humidity_percent",
+    "type": "INT64",
+    "mode": "NULLABLE",
+    "description": "Humidity percentage"
+  },
+  {
+    "name": "visibility_m",
+    "type": "INT64",
+    "mode": "NULLABLE",
+    "description": "Visibility in meters"
+  },
+  {
+    "name": "wind_speed_ms",
+    "type": "FLOAT64",
+    "mode": "NULLABLE",
+    "description": "Wind speed in meters/second"
+  },
+  {
+    "name": "wind_direction_deg",
+    "type": "INT64",
+    "mode": "NULLABLE",
+    "description": "Wind direction in degrees"
+  },
+  {
+    "name": "clouds_percent",
+    "type": "INT64",
+    "mode": "NULLABLE",
+    "description": "Cloudiness percentage"
+  },
+  {
+    "name": "weather_main",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "Weather condition main category (Rain, Snow, Clear, etc.)"
+  },
+  {
+    "name": "weather_description",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "Detailed weather description"
+  },
+  {
+    "name": "sunrise_timestamp",
+    "type": "TIMESTAMP",
+    "mode": "NULLABLE",
+    "description": "Sunrise time (UTC)"
+  },
+  {
+    "name": "sunset_timestamp",
+    "type": "TIMESTAMP",
+    "mode": "NULLABLE",
+    "description": "Sunset time (UTC)"
+  },
+  {
+    "name": "data_source",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "Data source identifier (OpenWeather API)"
+  },
+  {
+    "name": "ingestion_timestamp",
+    "type": "TIMESTAMP",
+    "mode": "REQUIRED",
+    "description": "When the data was ingested into our pipeline"
+  }
+]
