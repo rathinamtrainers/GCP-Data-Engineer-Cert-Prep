@@ -336,13 +336,64 @@ Now that you understand data engineering fundamentals, you're ready to learn GCP
 ✅ Cloud platforms like GCP provide managed services for each stage
 ✅ The GCP certification tests your ability to design, build, and operate data systems
 
+## Additional Learning Resources
+
+This introduction provides the foundation. To go deeper:
+
+### 📘 [LEARNING_PATH.md](LEARNING_PATH.md) - Your Complete Study Guide
+**Start here to plan your learning journey!**
+- Recommended learning paths for different backgrounds
+- Study tracker and knowledge checks
+- How to use all available materials effectively
+
+### 📕 [DEEP_DIVE.md](DEEP_DIVE.md) - Advanced Concepts (2-3 hours)
+**Go deep into each aspect of data engineering:**
+- Architecture Patterns (Lambda, Kappa, Medallion, Event-Driven)
+- Advanced Data Modeling (Star/Snowflake, SCD Types, Data Vault)
+- Data Quality Framework (6 dimensions, automated checks)
+- Performance Optimization (BigQuery, Dataflow)
+- Reliability & Fault Tolerance (exactly-once, DLQ, retries)
+- Cost Optimization (99% savings strategies!)
+- Security & Compliance (CMEK, IAM, DLP)
+- Real-World Case Studies
+
+### 📗 [SERVICE_SELECTION_GUIDE.md](SERVICE_SELECTION_GUIDE.md) - Decision Framework
+**Master choosing the right GCP service:**
+- Decision trees for storage, processing, and messaging
+- Comparison tables with use cases and pricing
+- 6 common scenarios with solutions
+- Exam tips and common traps
+
+### 📙 [GLOSSARY.md](GLOSSARY.md) - Quick Reference
+**Look up any term instantly:**
+- 100+ data engineering terms defined
+- GCP service descriptions
+- Common acronyms and concepts
+
+---
+
 ## Next Steps
 
-Ready to get hands-on? Let's start with BigQuery, the foundation of GCP data engineering:
+### Path 1: Continue Learning Theory
+Follow the [LEARNING_PATH.md](LEARNING_PATH.md) guide based on your background
 
-Ask me: **"Create the BigQuery basics tutorial (0300)"**
+### Path 2: Get Hands-On (Recommended!)
+Ready to build? Let's start with practical projects:
 
-Or if you want to start with real-time data: **"Create the Pub/Sub tutorial (0010)"**
+1. **[Project 0: GCP Environment Setup](../../projects/00-gcp-environment-setup/)**
+   - Set up your GCP environment
+   - Learn gcloud CLI basics
+   - **Start here!**
+
+2. **[Project 1: Batch ETL Weather Pipeline](../../projects/01-batch-etl-weather/)**
+   - Build a real data pipeline
+   - Use Cloud Storage, Dataflow, BigQuery
+   - Apply concepts you learned here
+
+### Path 3: Exam Preparation
+Follow the structured roadmap:
+- [EXAM_PREP.md](../../EXAM_PREP.md) - Topic-by-topic study plan
+- [PROJECTS.md](../../PROJECTS.md) - 7 projects covering all exam topics
 
 ---
 
@@ -350,5 +401,6 @@ Or if you want to start with real-time data: **"Create the Pub/Sub tutorial (001
 1. What types of data does your organization work with?
 2. Are your use cases more batch or streaming?
 3. What business problems could better data infrastructure solve?
+4. Which learning path above matches your goals?
 
-Take your time with these concepts - data engineering is a broad field, but breaking it down into the lifecycle stages makes it manageable. You're building a solid foundation for the GCP certification!
+Take your time with these concepts - data engineering is a broad field, but breaking it down into the lifecycle stages makes it manageable. You're building a solid foundation for the GCP certification! 🚀
