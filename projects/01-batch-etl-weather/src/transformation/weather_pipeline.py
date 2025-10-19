@@ -33,6 +33,8 @@ from typing import Dict, List, Optional
 import apache_beam as beam
 from apache_beam.options.pipeline_options import PipelineOptions, SetupOptions
 from apache_beam.io.gcp.bigquery import WriteToBigQuery, BigQueryDisposition
+from apache_beam.io.filesystems import FileSystems
+from apache_beam.io import fileio
 
 # Add parent directory to path for imports
 sys.path.insert(0, str(Path(__file__).parent.parent))
@@ -43,6 +45,37 @@ from utils.data_validator import (
     celsius_to_fahrenheit
 )
 from utils.bigquery_schema import SCHEMA_FIELDS
+
+
+class ReadJSONArray(beam.DoFn):
+    """
+    Read and parse JSON array files from GCS.
+    """
+
+    def process(self, file_path):
+        """
+        Read JSON file and yield individual records.
+
+        Args:
+            file_path: Path to JSON file
+
+        Yields:
+            Individual JSON records from array
+        """
+        try:
+            with FileSystems.open(file_path) as f:
+                content = f.read().decode('utf-8')
+                data = json.loads(content)
+
+                # Handle both arrays and single objects
+                if isinstance(data, list):
+                    for record in data:
+                        yield record
+                else:
+                    yield data
+
+        except Exception as e:
+            logging.error(f"Error reading file {file_path}: {e}")
 
 
 class ParseWeatherData(beam.DoFn):
@@ -207,18 +240,14 @@ def run(argv=None, save_main_session=True):
         help='Output BigQuery table (PROJECT:DATASET.TABLE)'
     )
 
-    parser.add_argument(
-        '--runner',
-        dest='runner',
-        default='DirectRunner',
-        help='Pipeline runner (DirectRunner or DataflowRunner)'
-    )
-
     known_args, pipeline_args = parser.parse_known_args(argv)
 
     # Set up pipeline options
     pipeline_options = PipelineOptions(pipeline_args)
     pipeline_options.view_as(SetupOptions).save_main_session = save_main_session
+
+    # Get runner from pipeline options
+    runner = pipeline_options.get_all_options().get('runner', 'DirectRunner')
 
     # Log pipeline configuration
     logging.info("=" * 70)
@@ -226,15 +255,21 @@ def run(argv=None, save_main_session=True):
     logging.info("=" * 70)
     logging.info(f"Input: {known_args.input}")
     logging.info(f"Output: {known_args.output}")
-    logging.info(f"Runner: {known_args.runner}")
+    logging.info(f"Runner: {runner}")
     logging.info("=" * 70)
+
+    # Get matching files
+    match_results = FileSystems.match([known_args.input])[0]
+    file_paths = [metadata.path for metadata in match_results.metadata_list]
+
+    logging.info(f"Found {len(file_paths)} files to process")
 
     # Create and run pipeline
     with beam.Pipeline(options=pipeline_options) as pipeline:
         (
             pipeline
-            | 'ReadJSON' >> beam.io.ReadFromText(known_args.input)
-            | 'ParseJSON' >> beam.Map(json.loads)
+            | 'CreateFilePaths' >> beam.Create(file_paths)
+            | 'ReadAndParseJSON' >> beam.ParDo(ReadJSONArray())
             | 'TransformWeatherData' >> beam.ParDo(ParseWeatherData())
             | 'ValidateData' >> beam.ParDo(ValidateWeatherData())
             | 'WriteToBigQuery' >> WriteToBigQuery(

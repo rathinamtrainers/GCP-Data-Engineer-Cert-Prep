@@ -8,6 +8,41 @@ Build a production-ready batch ETL pipeline that ingests weather data from an ex
 **Duration**: 8-10 hours
 **Cost**: $5-10 (mainly Composer environment)
 
+---
+
+## 🎯 Project Status
+
+### ✅ Phase 1: Apache Beam/Dataflow - COMPLETE
+- [x] Python 3.11 environment setup with pyenv
+- [x] Local pipeline testing with DirectRunner
+- [x] Production Dataflow deployment
+- [x] Helper scripts created (`run_dataflow_job.sh`)
+- [x] Comprehensive documentation
+
+**Last Successful Run**:
+- **Job ID**: `2025-10-18_13_02_44-17948874085318719194`
+- **Status**: ✅ JOB_STATE_DONE
+- **Records Processed**: 18 weather observations
+- **Duration**: ~3.5 minutes
+- **Console**: https://console.cloud.google.com/dataflow/jobs/us-central1/2025-10-18_13_02_44-17948874085318719194?project=data-engineer-475516
+
+📖 **See full deployment details**: [DATAFLOW_DEPLOYMENT_SUCCESS.md](DATAFLOW_DEPLOYMENT_SUCCESS.md)
+
+### ⏳ Phase 2: Cloud Composer - IN PROGRESS
+- [ ] Composer environment creation (~20-30 minutes)
+- [ ] Upload DAG and scripts
+- [ ] Test DAG execution
+- [ ] Configure daily schedule
+
+**Current Status**: Environment `weather-etl-composer` is being created...
+
+### ⏳ Phase 3: Looker Studio - PENDING
+- [ ] Create dashboard
+- [ ] Add visualizations
+- [ ] Share access
+
+---
+
 ## What You'll Build
 
 ```
@@ -193,73 +228,109 @@ By completing this project, you will learn to:
     └── lessons-learned.md            # Key takeaways
 ```
 
-## Getting Started
+## 🚀 Quick Start
 
-### Step 1: Get OpenWeather API Key
+### Prerequisites
 
-1. Go to https://openweathermap.org/api
-2. Sign up for free account
-3. Navigate to API keys section
-4. Copy your API key
-5. Add to `.env` file
+1. **Python 3.11 installed** (Apache Beam 2.53.0 requires Python ≤3.11)
+2. **GCP credentials configured**
+3. **GCP buckets created** (already set up in this project)
 
-### Step 2: Run Setup Script
+### Step 1: Set Up Environment
 
 ```bash
+# Navigate to project directory
 cd projects/01-batch-etl-weather
-./setup.sh
+
+# Activate the Beam environment (Python 3.11)
+source venv-beam/bin/activate
+
+# Set GCP credentials
+export GOOGLE_APPLICATION_CREDENTIALS=/path/to/your/service-account-key.json
 ```
 
-This will:
-- Create Cloud Storage buckets
-- Create BigQuery dataset and table
-- (Optional) Create Cloud Composer environment
-- Configure IAM permissions
+### Step 2: Run Dataflow Pipeline
 
-### Step 3: Test Data Ingestion
+**Option A: Use the helper script (recommended)**
 
 ```bash
-# Fetch weather data manually
-python src/ingestion/fetch_weather.py
-
-# Verify data in Cloud Storage
-gsutil ls gs://YOUR_BUCKET/raw/$(date +%Y%m%d)/
+# Run the Dataflow job with pre-configured settings
+bash run_dataflow_job.sh
 ```
 
-### Step 4: Run Dataflow Pipeline
+**Option B: Run manually**
 
 ```bash
-# Submit Dataflow job
-gcloud dataflow jobs run weather-transform-$(date +%Y%m%d) \
-    --gcs-location gs://dataflow-templates-us-central1/latest/Word_Count \
+# Generate unique job name
+JOB_NAME="weather-transform-$(date +%Y%m%d-%H%M%S)"
+
+# Submit to Dataflow
+python src/transformation/weather_pipeline.py \
+    --input "gs://data-engineer-475516-weather-raw/raw/*/weather-*.json" \
+    --output "data-engineer-475516:weather_data.daily" \
+    --runner DataflowRunner \
+    --project data-engineer-475516 \
     --region us-central1 \
-    --staging-location gs://YOUR_BUCKET/staging/ \
-    --parameters ...
+    --temp_location "gs://data-engineer-475516-weather-temp/dataflow/temp" \
+    --staging_location "gs://data-engineer-475516-weather-staging/dataflow/staging" \
+    --service_account_email "dataflow-runner@data-engineer-475516.iam.gserviceaccount.com" \
+    --max_num_workers 2 \
+    --num_workers 1 \
+    --machine_type n1-standard-1 \
+    --disk_size_gb 30 \
+    --job_name "${JOB_NAME}" \
+    --setup_file ./setup.py
 ```
 
-### Step 5: Query Data in BigQuery
+**Option C: Test locally first (DirectRunner)**
 
 ```bash
-# Run sample queries
-bq query --use_legacy_sql=false < sql/sample_queries.sql
+# Run pipeline locally for testing
+python src/transformation/weather_pipeline.py \
+    --input "gs://data-engineer-475516-weather-raw/raw/*/weather-*.json" \
+    --output "data-engineer-475516:weather_data.daily" \
+    --runner DirectRunner \
+    --temp_location "gs://data-engineer-475516-weather-temp/beam-temp"
 ```
 
-### Step 6: Create Looker Studio Dashboard
+### Step 3: Monitor Job
+
+```bash
+# View Dataflow console
+# The script will output a URL like:
+# https://console.cloud.google.com/dataflow/jobs/us-central1/<JOB_ID>?project=data-engineer-475516
+
+# List active jobs
+gcloud dataflow jobs list --region=us-central1 --status=active
+
+# View logs
+gcloud dataflow jobs describe <JOB_ID> --region=us-central1
+```
+
+### Step 4: Verify Data in BigQuery
+
+```bash
+# Count records loaded
+bq query --use_legacy_sql=false \
+  "SELECT COUNT(*) as total FROM \`data-engineer-475516.weather_data.daily\`"
+
+# View sample data
+bq query --use_legacy_sql=false \
+  "SELECT city, temperature_c, weather_main, timestamp
+   FROM \`data-engineer-475516.weather_data.daily\`
+   ORDER BY city LIMIT 10"
+```
+
+### Step 5: (Optional) Set Up Cloud Composer
+
+Coming soon - Airflow DAG for daily automation
+
+### Step 6: (Optional) Create Looker Studio Dashboard
 
 1. Go to https://lookerstudio.google.com/
 2. Create new data source → BigQuery
-3. Select your `weather_data.daily` table
-4. Build visualizations
-
-### Step 7: (Optional) Deploy Airflow DAG
-
-```bash
-# Upload DAG to Composer
-gcloud composer environments storage dags import \
-    --environment weather-composer \
-    --location us-central1 \
-    --source dags/weather_etl_dag.py
-```
+3. Select `data-engineer-475516.weather_data.daily` table
+4. Build visualizations for temperature trends and city comparisons
 
 ## Detailed Instructions
 
